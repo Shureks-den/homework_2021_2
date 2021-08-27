@@ -33,4 +33,17 @@ QUnit.module('Тестируем функцию inverse', function () {
 		assert.deepEqual(inverse([ 1, 2, 3, 4, 5 ], -5), [ 1, 2, 3, 4, 5 ]);
 		assert.deepEqual(inverse([ 1, 2, 3, 4, 5 ], -15), [ 1, 2, 3, 4, 5 ]);
 	});
+
+	QUnit.test('Функция корректно работает с "зеркальными" массивами', function(assert) {
+		assert.deepEqual(inverse([ 1, 3, 3, 1 ]), [ 1, 3, 3, 1 ]);
+		assert.deepEqual(inverse([ 1, 3, 3, 1 ], 1), [ 1, 1, 3, 3 ], 1);
+		assert.deepEqual(inverse([ 1, 3, 3, 1 ], 2), [ 1, 3, 1, 3 ], 2);
+		assert.deepEqual(inverse([ 'a', 'b', 'b', 'b', 'a' ]), [ 'a', 'b', 'b', 'b', 'a' ]);
+	});
+
+	QUnit.test('Функция не ломается от второго параметра, который больше размера массива', function(assert) {
+		assert.deepEqual(inverse([ 'a', 'b', 'c', 'd', 'e'], Infinity), [ 'a', 'b', 'c', 'd', 'e']);
+		assert.deepEqual(inverse([ 'a', 'b', 'c', 'd', 'e'], -Infinity), [ 'a', 'b', 'c', 'd', 'e']);
+	})
+
 });
