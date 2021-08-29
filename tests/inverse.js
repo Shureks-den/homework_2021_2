@@ -5,6 +5,11 @@ QUnit.module('Тестируем функцию inverse', function () {
 		assert.deepEqual(inverse([]), []);
 	});
 
+	QUnit.test('В случае если передан не массив, возвращает undefined', function(assert) {
+		assert.deepEqual(inverse(1, Infinity), undefined);
+		assert.deepEqual(inverse(undefined), undefined);
+	})
+
 	QUnit.test('Функция работает с массивом длины один', function (assert) {
 		assert.deepEqual(inverse([ 1 ]), [ 1 ]);
 		assert.deepEqual(inverse([ 'a' ]), [ 'a' ]);
