@@ -1,5 +1,21 @@
 'use strict';
 
+QUnit.module('Тестируем функцию deepCopy', function() {
+	QUnit.test('Функция работает с массивом объектов', function (assert) {
+		const a = [{a : "aaa"}, {b : "bbb"}];
+		let b = deepCopyFunc(a);
+		b[0].a = "abc";
+		assert.notDeepEqual(b, a);
+	});
+
+	QUnit.test('Функция работает со вложенными массивами', function (assert) {
+		const a = [[1], [2]];
+		let b = deepCopyFunc(a);
+		b[0][0] = 2;
+		assert.notDeepEqual(b, a);
+	});
+});
+
 QUnit.module('Тестируем функцию inverse', function () {
 	QUnit.test('Функция работает с пустым массивом', function (assert) {
 		assert.deepEqual(inverse([]), []);
