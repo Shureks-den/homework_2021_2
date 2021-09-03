@@ -6,15 +6,14 @@
  * @returns {any} full independent copy
  */
 const deepCopyFunc = (origin) => {
-    let deepCopy, value, key;
     if (typeof origin !== "object" || origin === null) {
         return origin; // возвращаем простой тип
     }
     // создаем пустую копию mutable 
-    deepCopy = Array.isArray(origin) ? [] : {};
+    let deepCopy = Array.isArray(origin) ? [] : {};
   
-    for (key in origin) {
-        value = origin[key];
+    for (const key in origin) {
+        const value = origin[key];
         deepCopy[key] = deepCopyFunc(value) // рекурсивный вызов для вложенных mutable
     }
     return deepCopy;
